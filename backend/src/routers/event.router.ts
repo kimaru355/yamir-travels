@@ -11,7 +11,7 @@ import { verifyAdmin } from "../middlewares/verifyAdmin";
 
 const EventRouter = Router();
 
-EventRouter.post("/create", verifyAdmin, createEvent);
+EventRouter.post("/create", createEvent);
 EventRouter.put("/update", verifyAdmin, updateEvent);
 EventRouter.delete("/delete/:id", verifyAdmin, deleteEvent);
 EventRouter.get("/all", getAllEvents);

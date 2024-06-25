@@ -24,7 +24,7 @@ model User {
 model Event {
   id           String      @id @unique
   destination  String
-  description  String
+  description  String      @db.VarChar(8000)
   country      String
   duration     Int
   durationType String

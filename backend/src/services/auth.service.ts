@@ -47,8 +47,6 @@ export class AuthService implements AuthServices {
           };
         }
       }
-      console.log(error.message);
-
       return {
         success: false,
         message: "An Error Occurred",
