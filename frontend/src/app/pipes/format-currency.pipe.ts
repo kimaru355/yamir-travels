@@ -16,7 +16,7 @@ export class FormatCurrencyPipe implements PipeTransform {
     }
     formated_price = `${
       price_to_format.length > 0
-        ? price_to_format.join('') + ',' + formated_price
+        ? price_to_format.reverse().join('') + ',' + formated_price
         : formated_price
     }`;
     return formated_price;

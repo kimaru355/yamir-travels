@@ -1,0 +1,267 @@
+<!-- <div class="container">
+  <h2>Create Event</h2>
+  <form (ngSubmit)="onSubmit($event)" #eventForm="ngForm">
+    <div class="form-group">
+      <label for="destination">Destination</label>
+      <input
+        type="text"
+        id="destination"
+        class="form-control"
+        required
+        [(ngModel)]="event.destination"
+        name="destination"
+      />
+    </div>
+    <div class="form-group">
+      <label for="description">Description</label>
+      <textarea
+        id="description"
+        class="form-control"
+        required
+        [(ngModel)]="event.description"
+        name="description"
+        rows="6"
+      ></textarea>
+    </div>
+    <div class="form-group">
+      <label for="country">Country</label>
+      <input
+        type="text"
+        id="country"
+        class="form-control"
+        required
+        [(ngModel)]="event.country"
+        name="country"
+      />
+    </div>
+    <div class="form-group">
+      <label for="duration">Duration</label>
+      <input
+        type="number"
+        id="duration"
+        class="form-control"
+        required
+        [(ngModel)]="event.duration"
+        name="duration"
+      />
+    </div>
+    <div class="form-group">
+      <label for="durationType">Duration Type</label>
+      <select
+        id="durationType"
+        class="form-control"
+        required
+        [(ngModel)]="event.durationType"
+        name="durationType"
+      >
+        <option value="year">Year</option>
+        <option value="month">Month</option>
+        <option value="week">Week</option>
+        <option value="day">Day</option>
+        <option value="hour">Hour</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="price">Price</label>
+      <input
+        type="number"
+        id="price"
+        class="form-control"
+        required
+        [(ngModel)]="event.price"
+        name="price"
+      />
+    </div>
+    <div class="form-group">
+      <label for="tourType">Tour Type</label>
+      <input
+        type="text"
+        id="tourType"
+        class="form-control"
+        required
+        [(ngModel)]="event.tourType"
+        name="tourType"
+      />
+    </div>
+    <div class="form-group">
+      <label for="images">Images</label>
+      <input
+        type="text"
+        id="images"
+        class="form-control"
+        required
+        [(ngModel)]="imageUrl"
+        name="images"
+      />
+      <button type="button" (click)="addImage()" class="addImage">
+        Add image
+      </button>
+      <div *ngIf="event.images.length > 0">
+        <p *ngFor="let imageUrl of event.images">{{ imageUrl }}</p>
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Create Event</button>
+  </form>
+</div> -->
+
+<div class="container">
+  <h2>Create Event</h2>
+  <form (ngSubmit)="onSubmit()" #eventForm="ngForm">
+    <div class="form-group">
+      <label for="destination">Destination</label>
+      <input
+        type="text"
+        id="destination"
+        class="form-control"
+        required
+        [(ngModel)]="event.destination"
+        name="destination"
+        #destination="ngModel"
+      />
+      <div
+        *ngIf="destination.invalid && destination.touched"
+        class="text-danger"
+      >
+        Destination is required.
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="description">Description</label>
+      <textarea
+        id="description"
+        class="form-control"
+        required
+        [(ngModel)]="event.description"
+        name="description"
+        rows="6"
+        #description="ngModel"
+      ></textarea>
+      <div
+        *ngIf="description.invalid && description.touched"
+        class="text-danger"
+      >
+        Description is required.
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="country">Country</label>
+      <input
+        type="text"
+        id="country"
+        class="form-control"
+        required
+        [(ngModel)]="event.country"
+        name="country"
+        #country="ngModel"
+      />
+      <div *ngIf="country.invalid && country.touched" class="text-danger">
+        Country is required.
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="duration">Duration</label>
+      <input
+        type="number"
+        id="duration"
+        class="form-control"
+        required
+        [(ngModel)]="event.duration"
+        min="1"
+        name="duration"
+        #duration="ngModel"
+      />
+      <div *ngIf="duration.invalid && duration.touched" class="text-danger">
+        Duration is required and must be a number.
+      </div>
+      <div
+        *ngIf="duration.invalid && duration.touched && duration.value <= 0"
+        class="text-danger"
+      >
+        Duration must be more than 0.
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="durationType">Duration Type</label>
+      <select
+        id="durationType"
+        class="form-control"
+        required
+        [(ngModel)]="event.durationType"
+        name="durationType"
+        #durationType="ngModel"
+      >
+        <option value="year">Year</option>
+        <option value="month">Month</option>
+        <option value="week">Week</option>
+        <option value="day">Day</option>
+        <option value="hour">Hour</option>
+      </select>
+      <div
+        *ngIf="durationType.invalid && durationType.touched"
+        class="text-danger"
+      >
+        Duration type is required.
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="price">Price</label>
+      <input
+        type="number"
+        id="price"
+        class="form-control"
+        required
+        min="1"
+        [(ngModel)]="event.price"
+        name="price"
+        #price="ngModel"
+      />
+      <div *ngIf="price.invalid && price.touched" class="text-danger">
+        Price is required and must be a number.
+      </div>
+      <div
+        *ngIf="price.invalid && price.touched && price.value <= 0"
+        class="text-danger"
+      >
+        Price must be more than 0.
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="tourType">Tour Type</label>
+      <input
+        type="text"
+        id="tourType"
+        class="form-control"
+        required
+        [(ngModel)]="event.tourType"
+        name="tourType"
+        #tourType="ngModel"
+      />
+      <div *ngIf="tourType.invalid && tourType.touched" class="text-danger">
+        Tour type is required.
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="images">Images</label>
+      <input
+        type="text"
+        id="images"
+        class="form-control"
+        [(ngModel)]="imageUrl"
+        name="images"
+      />
+      <button type="button" (click)="addImage()" class="addImage">
+        Add image
+      </button>
+      <div *ngIf="event.images.length > 0">
+        <p *ngFor="let imageUrl of event.images">{{ imageUrl }}</p>
+      </div>
+    </div>
+    <button
+      type="submit"
+      class="btn btn-primary"
+      [disabled]="eventForm.invalid"
+    >
+      Create Event
+    </button>
+  </form>
+</div>

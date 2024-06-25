@@ -1,0 +1,35 @@
+<section>
+  <div>
+    <h1>Manage Events</h1>
+    <button routerLink="/dashboard/create-event">Create Event</button>
+  </div>
+  <div>
+    <table>
+      <thead>
+        <tr>
+          <th>Destination</th>
+          <th>Country</th>
+          <th>Duration</th>
+          <th>Duration Type</th>
+          <th>Price</th>
+          <th>Tour Type</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let event of events">
+          <td>{{ event.destination }}</td>
+          <td>{{ event.country }}</td>
+          <td>{{ event.duration }}</td>
+          <td>{{ event.durationType }}</td>
+          <td>{{ event.price }}</td>
+          <td>{{ event.tourType }}</td>
+          <td>
+            <!-- <button (click)="onEdit(event)">Edit</button>
+            <button (click)="onDelete(event)">Delete</button> -->
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>

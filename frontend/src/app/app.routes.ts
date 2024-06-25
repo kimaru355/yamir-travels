@@ -8,6 +8,9 @@ import { BookingsComponent } from './pages/bookings/bookings.component';
 import { FavoritesComponent } from './pages/favorites/favorites.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { ToursComponent } from './pages/tours/tours.component';
+import { ManageEventsComponent } from './pages/manage-events/manage-events.component';
+import { CreateEventComponent } from './components/create-event/create-event.component';
+import { authGuard } from './guards/auth.guard';
 
 export const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -18,10 +21,42 @@ export const routes: Routes = [
     children: [
       { path: '', component: ToursComponent },
       { path: 'tour/:id', component: TourComponent },
-      { path: 'bookings', component: BookingsComponent },
-      { path: 'favorites', component: FavoritesComponent },
-      { path: 'profile', component: ProfileComponent },
+      {
+        path: 'bookings',
+        component: BookingsComponent,
+        canActivate: [authGuard],
+      },
+      {
+        path: 'favorites',
+        component: FavoritesComponent,
+        canActivate: [authGuard],
+      },
+      {
+        path: 'profile',
+        component: ProfileComponent,
+        canActivate: [authGuard],
+      },
     ],
   },
-  { path: 'dashboard', component: DashboardComponent },
+  {
+    path: 'dashboard',
+    component: DashboardComponent,
+    children: [
+      {
+        path: '',
+        redirectTo: 'events',
+        pathMatch: 'full',
+      },
+      {
+        path: 'events',
+        component: ManageEventsComponent,
+        canActivate: [authGuard],
+      },
+      {
+        path: 'create-event',
+        component: CreateEventComponent,
+        canActivate: [authGuard],
+      },
+    ],
+  },
 ];

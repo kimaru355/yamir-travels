@@ -67,8 +67,6 @@ export class RegisterComponent {
           alert('An Error Occurred');
         }
       });
-    } else {
-      console.log('Form not valid');
     }
   }
 }
