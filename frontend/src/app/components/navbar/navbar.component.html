@@ -1,0 +1,11 @@
+<header>
+  <nav>
+    <h1 routerLink="">Yamir Travels</h1>
+    <menu>
+      <button *ngIf="!isLoggedIn" routerLink="login">Login</button>
+      <button *ngIf="!isLoggedIn" routerLink="register">Sign Up</button>
+      <button *ngIf="isLoggedIn" routerLink="profile">Profile</button>
+      <button *ngIf="isLoggedIn" (click)="logout()">Logout</button>
+    </menu>
+  </nav>
+</header>

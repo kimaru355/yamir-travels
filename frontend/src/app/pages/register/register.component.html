@@ -1,0 +1,155 @@
+<main>
+  <section>
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input
+          id="email"
+          type="email"
+          formControlName="email"
+          class="form-control"
+        />
+        <div
+          *ngIf="
+            registerForm.controls['email'].invalid &&
+            registerForm.controls['email'].touched
+          "
+        >
+          <small *ngIf="registerForm.controls['email'].errors?.['required']"
+            >Email is required.</small
+          >
+          <small *ngIf="registerForm.controls['email'].errors?.['email']"
+            >Invalid email format.</small
+          >
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="name">Full Name</label>
+        <input
+          id="name"
+          type="text"
+          formControlName="name"
+          class="form-control"
+        />
+        <div
+          *ngIf="
+            registerForm.controls['name'].invalid &&
+            registerForm.controls['name'].touched
+          "
+        >
+          <small *ngIf="registerForm.controls['name'].errors?.['required']"
+            >Name is required.</small
+          >
+          <small *ngIf="registerForm.controls['name'].errors?.['minlength']"
+            >Name must be at least 2 characters long.</small
+          >
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="phoneNumber">Phone Number</label>
+        <input
+          id="phoneNumber"
+          type="text"
+          formControlName="phoneNumber"
+          class="form-control"
+        />
+        <div
+          *ngIf="
+            registerForm.controls['phoneNumber'].invalid &&
+            registerForm.controls['phoneNumber'].touched
+          "
+        >
+          <small
+            *ngIf="registerForm.controls['phoneNumber'].errors?.['required']"
+            >Phone number is required.</small
+          >
+          <small
+            *ngIf="registerForm.controls['phoneNumber'].errors?.['pattern']"
+            >Phone number must be 10-15 digits long.</small
+          >
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="country">Country</label>
+        <input
+          id="country"
+          type="text"
+          formControlName="country"
+          class="form-control"
+        />
+        <div
+          *ngIf="
+            registerForm.controls['country'].invalid &&
+            registerForm.controls['country'].touched
+          "
+        >
+          <small *ngIf="registerForm.controls['country'].errors?.['required']"
+            >Country is required.</small
+          >
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input
+          id="password"
+          type="password"
+          formControlName="password"
+          class="form-control"
+        />
+        <div
+          *ngIf="
+            registerForm.controls['password'].invalid &&
+            registerForm.controls['password'].touched
+          "
+        >
+          <small *ngIf="registerForm.controls['password'].errors?.['required']"
+            >Password is required.</small
+          >
+          <small *ngIf="registerForm.controls['password'].errors?.['minlength']"
+            >Password must be at least 6 characters long.</small
+          >
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="confirmPassword">Confirm Password</label>
+        <input
+          id="confirmPassword"
+          type="password"
+          formControlName="confirmPassword"
+          class="form-control"
+        />
+        <div
+          *ngIf="
+            registerForm.controls['confirmPassword'].invalid &&
+            registerForm.controls['confirmPassword'].touched
+          "
+        >
+          <small
+            *ngIf="registerForm.controls['confirmPassword'].errors?.['required']"
+            >Confirm Password is required.</small
+          >
+          <small
+            *ngIf="
+                registerForm.errors?.['mismatch'] &&
+                registerForm.controls['confirmPassword'].touched
+              "
+            >Passwords do not match.</small
+          >
+        </div>
+      </div>
+
+      <button
+        type="submit"
+        class="btn btn-primary"
+        [disabled]="registerForm.invalid"
+      >
+        Register
+      </button>
+    </form>
+  </section>
+</main>

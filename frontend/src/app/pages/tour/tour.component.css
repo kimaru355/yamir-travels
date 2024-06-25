@@ -1,0 +1,22 @@
+.allImages {
+  width: 100%;
+  height: 5rem;
+  display: flex;
+  overflow: clip;
+  gap: 0.5rem;
+  padding: 0.2rem 0.4rem;
+}
+.eventImage:hover {
+  cursor: pointer;
+}
+.mainImage {
+  width: 80%;
+  height: auto;
+}
+#mainImageContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 0;
+}

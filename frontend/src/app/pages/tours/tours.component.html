@@ -1,0 +1,14 @@
+<section>
+  <div>
+    <div
+      *ngFor="let event of events"
+      class="event"
+      routerLink="/tour/{{ event.id }}"
+    >
+      <img src="{{ event.images[0] }}" alt="" class="eventImage" />
+      <h2>{{ event.destination }}</h2>
+      <p>Duration: {{ event.duration }} {{ event.durationType }}</p>
+      <h2>Ksh. {{ event.price | formatCurrency }}</h2>
+    </div>
+  </div>
+</section>

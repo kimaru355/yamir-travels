@@ -1,0 +1,90 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlserver"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id          String      @id @unique
+  email       String      @unique
+  name        String
+  phoneNumber String      @unique
+  country     String
+  password    String
+  isDeleted   Boolean     @default(false)
+  role        String      @default("user")
+  Review      Review[]
+  Booking     Booking[]
+  Favorites   Favorites[]
+}
+
+model Event {
+  id           String      @id @unique
+  destination  String
+  description  String
+  country      String
+  duration     Int
+  durationType String
+  price        Float
+  tourType     String
+  images       String      @db.VarChar(MAX)
+  isDeleted    Boolean     @default(false)
+  createdAt    DateTime    @default(now())
+  updatedAt    DateTime    @default(now()) @updatedAt
+  Booking      Booking[]
+  Review       Review[]
+  Favorites    Favorites[]
+}
+
+model Review {
+  id        String   @id @unique
+  eventId   String
+  userId    String
+  bookingId String
+  rating    Int
+  comment   String
+  isDeleted Boolean  @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now()) @updatedAt
+  event     Event    @relation(fields: [eventId], references: [id], onUpdate: NoAction, onDelete: NoAction)
+  user      User     @relation(fields: [userId], references: [id], onUpdate: NoAction, onDelete: NoAction)
+  booking   Booking  @relation(fields: [bookingId], references: [id], onUpdate: NoAction, onDelete: NoAction)
+}
+
+model Booking {
+  id               String    @id @unique
+  eventId          String
+  userId           String
+  bookingDate      String
+  isEventCompleted Boolean   @default(false)
+  createdAt        DateTime  @default(now())
+  updatedAt        DateTime  @default(now()) @updatedAt
+  Review           Review[]
+  Payment          Payment[]
+  event            Event     @relation(fields: [eventId], references: [id])
+  user             User      @relation(fields: [userId], references: [id])
+}
+
+model Payment {
+  id            String   @id @unique
+  bookingId     String
+  paymentDate   DateTime
+  paymentStatus String
+  paymentType   String
+  paymentAmount Float
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @default(now()) @updatedAt
+  booking       Booking  @relation(fields: [bookingId], references: [id])
+}
+
+model Favorites {
+  id        String   @id @unique
+  eventId   String
+  userId    String
+  createdAt DateTime @default(now())
+  event     Event    @relation(fields: [eventId], references: [id], onUpdate: NoAction, onDelete: NoAction)
+  user      User     @relation(fields: [userId], references: [id], onUpdate: NoAction, onDelete: NoAction)
+}

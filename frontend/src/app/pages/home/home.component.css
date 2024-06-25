@@ -1,0 +1,11 @@
+.event {
+  width: 20rem;
+  height: 20rem;
+}
+.event:hover {
+  cursor: pointer;
+}
+.eventImage {
+  width: 100%;
+  height: auto;
+}

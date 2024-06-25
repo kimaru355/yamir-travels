@@ -1,0 +1,20 @@
+<section *ngIf="event">
+  <div>
+    <div id="mainImageContainer">
+      <img src="{{ mainImage }}" alt="" class="mainImage" />
+    </div>
+    <div class="allImages">
+      <img
+        *ngFor="let image of event.images"
+        src="{{ image }}"
+        alt=""
+        (click)="mainImage = image"
+        class="eventImage"
+      />
+    </div>
+    <h2>{{ event.destination }}</h2>
+    <p>Country: {{ event.country }}</p>
+    <p>Duration: {{ event.duration }} {{ event.durationType }}</p>
+    <h2>Ksh. {{ event.price | formatCurrency }}</h2>
+  </div>
+</section>
