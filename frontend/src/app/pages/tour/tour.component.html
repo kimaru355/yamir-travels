@@ -16,6 +16,22 @@
     <p>Country: {{ event.country }}</p>
     <p>Duration: {{ event.duration }} {{ event.durationType }}</p>
     <h2>Ksh. {{ event.price | formatCurrency }}</h2>
+    <button type="button" (click)="isBooking = !isBooking" class="book">
+      {{ isBooking ? "Cancel" : "Book Tour" }}
+    </button>
+    <div class="isBooking" *ngIf="isBooking">
+      <form (submit)="bookTour()">
+        <input
+          type="datetime-local"
+          placeholder="Date"
+          [(ngModel)]="bookingDate"
+          name="date"
+          class="datetime"
+          required
+        />
+        <button type="submit">Book</button>
+      </form>
+    </div>
     <p>{{ event.description }}</p>
   </div>
 </section>

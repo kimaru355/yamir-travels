@@ -15,7 +15,7 @@ const users_service_1 = require("../services/users.service");
 const verifyAdmin = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     const id = (0, get_id_from_token_1.getIdFromToken)(req);
     if (!id) {
-        return res.status(401).json({
+        return res.status(200).json({
             success: false,
             message: "Unauthorized",
             data: null,
@@ -24,7 +24,7 @@ const verifyAdmin = (req, res, next) => __awaiter(void 0, void 0, void 0, functi
     const usersService = new users_service_1.UsersService();
     const response = yield usersService.isAdmin(id);
     if (!response.success && response.message === "An Error Occurred") {
-        return res.status(500).json(response);
+        return res.status(200).json(response);
     }
     if (!response.data) {
         return res.status(403).json({

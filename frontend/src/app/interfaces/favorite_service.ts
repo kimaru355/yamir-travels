@@ -1,8 +1,7 @@
-import { Favorite } from "./favorite";
-import { Res } from "./res";
+import { Favorite } from './favorite';
 
 export interface FavoriteServices {
-  createFavorite(favorite: Favorite): Promise<Res<null>>;
-  getFavorites(userId: string): Promise<Res<Favorite[] | null>>;
-  deleteFavorite(id: string): Promise<Res<Favorite | null>>;
+  createFavorite(favorite: Favorite): any;
+  getFavorites(userId: string): any;
+  deleteFavorite(id: string): any;
 }

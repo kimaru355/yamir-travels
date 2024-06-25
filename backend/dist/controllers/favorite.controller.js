@@ -17,7 +17,7 @@ const createFavorite = (req, res) => __awaiter(void 0, void 0, void 0, function*
     const favorite = req.body;
     favorite.id = (0, uuid_1.v4)();
     if (!favorite.id || !favorite.eventId || !favorite.userId) {
-        return res.status(400).json({
+        return res.status(200).json({
             success: false,
             message: "Invalid data",
             data: null,
@@ -28,9 +28,9 @@ const createFavorite = (req, res) => __awaiter(void 0, void 0, void 0, function*
         return res.status(200).json(response);
     }
     else if (response.message !== "An Error Occurred") {
-        return res.status(404).json(response);
+        return res.status(200).json(response);
     }
-    return res.status(500).json(response);
+    return res.status(200).json(response);
 });
 exports.createFavorite = createFavorite;
 const getFavorites = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
@@ -41,9 +41,9 @@ const getFavorites = (req, res) => __awaiter(void 0, void 0, void 0, function* (
         return res.status(200).json(response);
     }
     else if (response.message !== "An Error Occurred") {
-        return res.status(404).json(response);
+        return res.status(200).json(response);
     }
-    return res.status(500).json(response);
+    return res.status(200).json(response);
 });
 exports.getFavorites = getFavorites;
 const deleteFavorite = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
@@ -54,8 +54,8 @@ const deleteFavorite = (req, res) => __awaiter(void 0, void 0, void 0, function*
         return res.status(200).json(response);
     }
     else if (response.message !== "An Error Occurred") {
-        return res.status(404).json(response);
+        return res.status(200).json(response);
     }
-    return res.status(500).json(response);
+    return res.status(200).json(response);
 });
 exports.deleteFavorite = deleteFavorite;

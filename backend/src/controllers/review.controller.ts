@@ -22,7 +22,7 @@ export const createReview = async (
     review.rating < 1 ||
     review.rating > 5
   ) {
-    return res.status(400).json({
+    return res.status(200).json({
       success: false,
       message: "Invalid data",
       data: null,
@@ -32,9 +32,9 @@ export const createReview = async (
   if (response.success) {
     return res.status(200).json(response);
   } else if (response.message !== "An Error Occurred") {
-    return res.status(404).json(response);
+    return res.status(200).json(response);
   }
-  return res.status(500).json(response);
+  return res.status(200).json(response);
 };
 
 export const getReviews = async (
@@ -46,9 +46,9 @@ export const getReviews = async (
   if (response.success) {
     return res.status(200).json(response);
   } else if (response.message !== "An Error Occurred") {
-    return res.status(404).json(response);
+    return res.status(200).json(response);
   }
-  return res.status(500).json(response);
+  return res.status(200).json(response);
 };
 
 export const getReviewsByUserId = async (
@@ -63,9 +63,9 @@ export const getReviewsByUserId = async (
   if (response.success) {
     return res.status(200).json(response);
   } else if (response.message !== "An Error Occurred") {
-    return res.status(404).json(response);
+    return res.status(200).json(response);
   }
-  return res.status(500).json(response);
+  return res.status(200).json(response);
 };
 
 export const getReviewsByEventId = async (
@@ -79,9 +79,9 @@ export const getReviewsByEventId = async (
   if (response.success) {
     return res.status(200).json(response);
   } else if (response.message !== "An Error Occurred") {
-    return res.status(404).json(response);
+    return res.status(200).json(response);
   }
-  return res.status(500).json(response);
+  return res.status(200).json(response);
 };
 
 export const updateReview = async (
@@ -101,7 +101,7 @@ export const updateReview = async (
     review.rating < 1 ||
     review.rating > 5
   ) {
-    return res.status(400).json({
+    return res.status(200).json({
       success: false,
       message: "Invalid data",
       data: null,
@@ -112,9 +112,9 @@ export const updateReview = async (
   if (response.success) {
     return res.status(200).json(response);
   } else if (response.message !== "An Error Occurred") {
-    return res.status(404).json(response);
+    return res.status(200).json(response);
   }
-  return res.status(500).json(response);
+  return res.status(200).json(response);
 };
 
 export const deleteReview = async (
@@ -123,7 +123,7 @@ export const deleteReview = async (
 ): Promise<Response> => {
   const id: string = req.params.id;
   if (!id) {
-    return res.status(400).json({
+    return res.status(200).json({
       success: false,
       message: "Invalid data",
       data: null,
@@ -134,7 +134,7 @@ export const deleteReview = async (
   if (response.success) {
     return res.status(200).json(response);
   } else if (response.message !== "An Error Occurred") {
-    return res.status(404).json(response);
+    return res.status(200).json(response);
   }
-  return res.status(500).json(response);
+  return res.status(200).json(response);
 };

@@ -139,6 +139,7 @@ export class AuthService implements AuthServices {
           };
         }
       }
+
       return {
         success: false,
         message: "An error occurred",

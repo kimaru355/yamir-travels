@@ -19,14 +19,14 @@ const createBooking = (req, res) => __awaiter(void 0, void 0, void 0, function* 
     booking.id = (0, uuid_1.v4)();
     booking.userId = (0, get_id_from_token_1.getIdFromToken)(req);
     if (!booking.userId) {
-        return res.status(401).json({
+        return res.status(200).json({
             success: false,
             message: "Unauthorized",
             data: null,
         });
     }
     if (!booking.eventId || !booking.bookingDate) {
-        return res.status(400).json({
+        return res.status(200).json({
             success: false,
             message: "Invalid data",
             data: null,
@@ -37,9 +37,9 @@ const createBooking = (req, res) => __awaiter(void 0, void 0, void 0, function* 
         return res.status(201).json(response);
     }
     else if (response.message !== "An error occurred") {
-        return res.status(400).json(response);
+        return res.status(200).json(response);
     }
-    return res.status(500).json(response);
+    return res.status(200).json(response);
 });
 exports.createBooking = createBooking;
 const getAllBookings = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
@@ -49,9 +49,9 @@ const getAllBookings = (req, res) => __awaiter(void 0, void 0, void 0, function*
         return res.status(200).json(response);
     }
     else if (response.message !== "An Error Occurred") {
-        return res.status(404).json(response);
+        return res.status(200).json(response);
     }
-    return res.status(500).json(response);
+    return res.status(200).json(response);
 });
 exports.getAllBookings = getAllBookings;
 const getCompletedBookings = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
@@ -61,9 +61,9 @@ const getCompletedBookings = (req, res) => __awaiter(void 0, void 0, void 0, fun
         return res.status(200).json(response);
     }
     else if (response.message !== "An Error Occurred") {
-        return res.status(404).json(response);
+        return res.status(200).json(response);
     }
-    return res.status(500).json(response);
+    return res.status(200).json(response);
 });
 exports.getCompletedBookings = getCompletedBookings;
 const getIncompleteBookings = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
@@ -73,9 +73,9 @@ const getIncompleteBookings = (req, res) => __awaiter(void 0, void 0, void 0, fu
         return res.status(200).json(response);
     }
     else if (response.message !== "An Error Occurred") {
-        return res.status(404).json(response);
+        return res.status(200).json(response);
     }
-    return res.status(500).json(response);
+    return res.status(200).json(response);
 });
 exports.getIncompleteBookings = getIncompleteBookings;
 const getBookingsByEventId = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
@@ -86,9 +86,9 @@ const getBookingsByEventId = (req, res) => __awaiter(void 0, void 0, void 0, fun
         return res.status(200).json(response);
     }
     else if (response.message !== "An Error Occurred") {
-        return res.status(404).json(response);
+        return res.status(200).json(response);
     }
-    return res.status(500).json(response);
+    return res.status(200).json(response);
 });
 exports.getBookingsByEventId = getBookingsByEventId;
 const getBookingsByUserId = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
@@ -99,8 +99,8 @@ const getBookingsByUserId = (req, res) => __awaiter(void 0, void 0, void 0, func
         return res.status(200).json(response);
     }
     else if (response.message !== "An Error Occurred") {
-        return res.status(404).json(response);
+        return res.status(200).json(response);
     }
-    return res.status(500).json(response);
+    return res.status(200).json(response);
 });
 exports.getBookingsByUserId = getBookingsByUserId;

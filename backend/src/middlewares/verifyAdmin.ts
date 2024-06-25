@@ -10,7 +10,7 @@ export const verifyAdmin = async (
 ) => {
   const id = getIdFromToken(req);
   if (!id) {
-    return res.status(401).json({
+    return res.status(200).json({
       success: false,
       message: "Unauthorized",
       data: null,
@@ -19,7 +19,7 @@ export const verifyAdmin = async (
   const usersService = new UsersService();
   const response: Res<boolean | null> = await usersService.isAdmin(id);
   if (!response.success && response.message === "An Error Occurred") {
-    return res.status(500).json(response);
+    return res.status(200).json(response);
   }
   if (!response.data) {
     return res.status(403).json({

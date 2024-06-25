@@ -14,26 +14,27 @@ export const createBooking = async (
   booking.id = v4();
   booking.userId = getIdFromToken(req);
   if (!booking.userId) {
-    return res.status(401).json({
+    return res.status(200).json({
       success: false,
       message: "Unauthorized",
       data: null,
     });
   }
   if (!booking.eventId || !booking.bookingDate) {
-    return res.status(400).json({
+    return res.status(200).json({
       success: false,
       message: "Invalid data",
       data: null,
     });
   }
+
   const response: Res<null> = await bookingService.createBooking(booking);
   if (response.success) {
     return res.status(201).json(response);
   } else if (response.message !== "An error occurred") {
-    return res.status(400).json(response);
+    return res.status(200).json(response);
   }
-  return res.status(500).json(response);
+  return res.status(200).json(response);
 };
 
 export const getAllBookings = async (
@@ -45,9 +46,9 @@ export const getAllBookings = async (
   if (response.success) {
     return res.status(200).json(response);
   } else if (response.message !== "An Error Occurred") {
-    return res.status(404).json(response);
+    return res.status(200).json(response);
   }
-  return res.status(500).json(response);
+  return res.status(200).json(response);
 };
 
 export const getCompletedBookings = async (
@@ -60,9 +61,9 @@ export const getCompletedBookings = async (
   if (response.success) {
     return res.status(200).json(response);
   } else if (response.message !== "An Error Occurred") {
-    return res.status(404).json(response);
+    return res.status(200).json(response);
   }
-  return res.status(500).json(response);
+  return res.status(200).json(response);
 };
 
 export const getIncompleteBookings = async (
@@ -75,9 +76,9 @@ export const getIncompleteBookings = async (
   if (response.success) {
     return res.status(200).json(response);
   } else if (response.message !== "An Error Occurred") {
-    return res.status(404).json(response);
+    return res.status(200).json(response);
   }
-  return res.status(500).json(response);
+  return res.status(200).json(response);
 };
 
 export const getBookingsByEventId = async (
@@ -91,9 +92,9 @@ export const getBookingsByEventId = async (
   if (response.success) {
     return res.status(200).json(response);
   } else if (response.message !== "An Error Occurred") {
-    return res.status(404).json(response);
+    return res.status(200).json(response);
   }
-  return res.status(500).json(response);
+  return res.status(200).json(response);
 };
 
 export const getBookingsByUserId = async (
@@ -107,7 +108,7 @@ export const getBookingsByUserId = async (
   if (response.success) {
     return res.status(200).json(response);
   } else if (response.message !== "An Error Occurred") {
-    return res.status(404).json(response);
+    return res.status(200).json(response);
   }
-  return res.status(500).json(response);
+  return res.status(200).json(response);
 };

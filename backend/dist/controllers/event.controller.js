@@ -25,7 +25,7 @@ const createEvent = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
         !event.price ||
         !event.tourType ||
         !event.images) {
-        return res.status(400).json({
+        return res.status(200).json({
             success: false,
             message: "Invalid data",
             data: null,
@@ -36,9 +36,9 @@ const createEvent = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
         return res.status(200).json(response);
     }
     else if (response.message !== "An Error Occurred") {
-        return res.status(404).json(response);
+        return res.status(200).json(response);
     }
-    return res.status(500).json(response);
+    return res.status(200).json(response);
 });
 exports.createEvent = createEvent;
 const updateEvent = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
@@ -49,16 +49,16 @@ const updateEvent = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
         return res.status(200).json(response);
     }
     else if (response.message !== "An Error Occurred") {
-        return res.status(404).json(response);
+        return res.status(200).json(response);
     }
-    return res.status(500).json(response);
+    return res.status(200).json(response);
 });
 exports.updateEvent = updateEvent;
 const deleteEvent = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const eventService = new event_service_1.EventService();
     const id = req.params.id;
     if (!id) {
-        return res.status(400).json({
+        return res.status(200).json({
             success: false,
             message: "Please provide an id",
             data: null,
@@ -69,9 +69,9 @@ const deleteEvent = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
         return res.status(200).json(response);
     }
     else if (response.message !== "An Error Occurred") {
-        return res.status(404).json(response);
+        return res.status(200).json(response);
     }
-    return res.status(500).json(response);
+    return res.status(200).json(response);
 });
 exports.deleteEvent = deleteEvent;
 const getEvent = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
@@ -83,9 +83,9 @@ const getEvent = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         return res.status(200).json(updatedResponse);
     }
     else if (response.message !== "An Error Occurred") {
-        return res.status(404).json(response);
+        return res.status(200).json(response);
     }
-    return res.status(500).json(response);
+    return res.status(200).json(response);
 });
 exports.getEvent = getEvent;
 const getAllEvents = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
@@ -102,9 +102,9 @@ const getAllEvents = (req, res) => __awaiter(void 0, void 0, void 0, function* (
         return res.status(200).json(updatedResponse);
     }
     else if (response.message !== "An Error Occurred") {
-        return res.status(404).json(response);
+        return res.status(200).json(response);
     }
-    return res.status(500).json(response);
+    return res.status(200).json(response);
 });
 exports.getAllEvents = getAllEvents;
 const getEventsByTourType = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
@@ -122,9 +122,9 @@ const getEventsByTourType = (req, res) => __awaiter(void 0, void 0, void 0, func
         return res.status(200).json(updatedResponse);
     }
     else if (response.message !== "An Error Occurred") {
-        return res.status(404).json(response);
+        return res.status(200).json(response);
     }
-    return res.status(500).json(response);
+    return res.status(200).json(response);
 });
 exports.getEventsByTourType = getEventsByTourType;
 const getEventsByName = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
@@ -142,8 +142,8 @@ const getEventsByName = (req, res) => __awaiter(void 0, void 0, void 0, function
         return res.status(200).json(updatedResponse);
     }
     else if (response.message !== "An Error Occurred") {
-        return res.status(404).json(response);
+        return res.status(200).json(response);
     }
-    return res.status(500).json(response);
+    return res.status(200).json(response);
 });
 exports.getEventsByName = getEventsByName;

@@ -24,4 +24,24 @@ export class ManageEventsComponent {
       }
     });
   }
+
+  updateEvent(event: Event) {
+    this.eventService.updateEvent(event).subscribe((response) => {
+      if (response.success) {
+        alert('Event updated successfully');
+        this.getEvents();
+      }
+    });
+  }
+  deleteEvent(event: Event) {
+    if (!event.id) {
+      return;
+    }
+    this.eventService.deleteEvent(event.id).subscribe((response) => {
+      if (response.success) {
+        alert('Event deleted successfully');
+        this.getEvents();
+      }
+    });
+  }
 }

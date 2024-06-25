@@ -25,7 +25,7 @@ export const createEvent = async (
     !event.tourType ||
     !event.images
   ) {
-    return res.status(400).json({
+    return res.status(200).json({
       success: false,
       message: "Invalid data",
       data: null,
@@ -35,9 +35,9 @@ export const createEvent = async (
   if (response.success) {
     return res.status(200).json(response);
   } else if (response.message !== "An Error Occurred") {
-    return res.status(404).json(response);
+    return res.status(200).json(response);
   }
-  return res.status(500).json(response);
+  return res.status(200).json(response);
 };
 
 export const updateEvent = async (
@@ -50,9 +50,9 @@ export const updateEvent = async (
   if (response.success) {
     return res.status(200).json(response);
   } else if (response.message !== "An Error Occurred") {
-    return res.status(404).json(response);
+    return res.status(200).json(response);
   }
-  return res.status(500).json(response);
+  return res.status(200).json(response);
 };
 
 export const deleteEvent = async (
@@ -62,7 +62,7 @@ export const deleteEvent = async (
   const eventService = new EventService();
   const id: string = req.params.id;
   if (!id) {
-    return res.status(400).json({
+    return res.status(200).json({
       success: false,
       message: "Please provide an id",
       data: null,
@@ -72,9 +72,9 @@ export const deleteEvent = async (
   if (response.success) {
     return res.status(200).json(response);
   } else if (response.message !== "An Error Occurred") {
-    return res.status(404).json(response);
+    return res.status(200).json(response);
   }
-  return res.status(500).json(response);
+  return res.status(200).json(response);
 };
 
 export const getEvent = async (
@@ -94,9 +94,9 @@ export const getEvent = async (
     };
     return res.status(200).json(updatedResponse);
   } else if (response.message !== "An Error Occurred") {
-    return res.status(404).json(response);
+    return res.status(200).json(response);
   }
-  return res.status(500).json(response);
+  return res.status(200).json(response);
 };
 
 export const getAllEvents = async (
@@ -118,9 +118,9 @@ export const getAllEvents = async (
     };
     return res.status(200).json(updatedResponse);
   } else if (response.message !== "An Error Occurred") {
-    return res.status(404).json(response);
+    return res.status(200).json(response);
   }
-  return res.status(500).json(response);
+  return res.status(200).json(response);
 };
 
 export const getEventsByTourType = async (
@@ -145,9 +145,9 @@ export const getEventsByTourType = async (
     };
     return res.status(200).json(updatedResponse);
   } else if (response.message !== "An Error Occurred") {
-    return res.status(404).json(response);
+    return res.status(200).json(response);
   }
-  return res.status(500).json(response);
+  return res.status(200).json(response);
 };
 
 export const getEventsByName = async (
@@ -172,7 +172,7 @@ export const getEventsByName = async (
     };
     return res.status(200).json(updatedResponse);
   } else if (response.message !== "An Error Occurred") {
-    return res.status(404).json(response);
+    return res.status(200).json(response);
   }
-  return res.status(500).json(response);
+  return res.status(200).json(response);
 };

@@ -1,6 +1,6 @@
 export interface Favorite {
-  id: string;
+  id?: string;
   eventId: string;
-  userId: string;
+  userId?: string;
   createdAt?: Date;
 }

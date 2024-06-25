@@ -1,1 +1,194 @@
-<p>profile works!</p>
+<main>
+  <section *ngIf="userDetails">
+    <form [formGroup]="detailsForm" (ngSubmit)="onDetailsSubmit()">
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input
+          id="email"
+          type="email"
+          formControlName="email"
+          class="form-control"
+          [(ngModel)]="userDetails.email"
+        />
+        <div
+          *ngIf="
+            detailsForm.controls['email'].invalid &&
+            detailsForm.controls['email'].touched
+          "
+        >
+          <small *ngIf="detailsForm.controls['email'].errors?.['required']"
+            >Email is required.</small
+          >
+          <small *ngIf="detailsForm.controls['email'].errors?.['email']"
+            >Invalid email format.</small
+          >
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="name">Full Name</label>
+        <input
+          id="name"
+          type="text"
+          formControlName="name"
+          class="form-control"
+          [(ngModel)]="userDetails.name"
+        />
+        <div
+          *ngIf="
+            detailsForm.controls['name'].invalid &&
+            detailsForm.controls['name'].touched
+          "
+        >
+          <small *ngIf="detailsForm.controls['name'].errors?.['required']"
+            >Name is required.</small
+          >
+          <small *ngIf="detailsForm.controls['name'].errors?.['minlength']"
+            >Name must be at least 2 characters long.</small
+          >
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="phoneNumber">Phone Number</label>
+        <input
+          id="phoneNumber"
+          type="text"
+          formControlName="phoneNumber"
+          class="form-control"
+          [(ngModel)]="userDetails.phoneNumber"
+        />
+        <div
+          *ngIf="
+            detailsForm.controls['phoneNumber'].invalid &&
+            detailsForm.controls['phoneNumber'].touched
+          "
+        >
+          <small
+            *ngIf="detailsForm.controls['phoneNumber'].errors?.['required']"
+            >Phone number is required.</small
+          >
+          <small *ngIf="detailsForm.controls['phoneNumber'].errors?.['pattern']"
+            >Phone number must be 10-15 digits long.</small
+          >
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="country">Country</label>
+        <input
+          id="country"
+          type="text"
+          formControlName="country"
+          class="form-control"
+          [(ngModel)]="userDetails.country"
+        />
+        <div
+          *ngIf="
+            detailsForm.controls['country'].invalid &&
+            detailsForm.controls['country'].touched
+          "
+        >
+          <small *ngIf="detailsForm.controls['country'].errors?.['required']"
+            >Country is required.</small
+          >
+        </div>
+      </div>
+
+      <button
+        type="submit"
+        class="btn btn-primary"
+        [disabled]="detailsForm.invalid"
+      >
+        Update Details
+      </button>
+    </form>
+    <form [formGroup]="passwordForm" (ngSubmit)="onPasswordSubmit()">
+      <div class="form-group">
+        <label for="oldPassword">Old Password</label>
+        <input
+          id="oldPassword"
+          type="password"
+          formControlName="oldPassword"
+          class="form-control"
+          [(ngModel)]="userPasswords.old_password"
+        />
+        <div
+          *ngIf="
+            passwordForm.controls['oldPassword'].invalid &&
+            passwordForm.controls['oldPassword'].touched
+          "
+        >
+          <small
+            *ngIf="passwordForm.controls['oldPassword'].errors?.['required']"
+            >Old Password is required.</small
+          >
+          <small
+            *ngIf="passwordForm.controls['oldPassword'].errors?.['minlength']"
+            >Password must be at least 6 characters long.</small
+          >
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input
+          id="password"
+          type="password"
+          formControlName="password"
+          class="form-control"
+          [(ngModel)]="userPasswords.new_password"
+        />
+        <div
+          *ngIf="
+            passwordForm.controls['password'].invalid &&
+            passwordForm.controls['password'].touched
+          "
+        >
+          <small *ngIf="passwordForm.controls['password'].errors?.['required']"
+            >Password is required.</small
+          >
+          <small *ngIf="passwordForm.controls['password'].errors?.['minlength']"
+            >Password must be at least 6 characters long.</small
+          >
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="confirmPassword">Confirm Password</label>
+        <input
+          id="confirmPassword"
+          type="password"
+          formControlName="confirmPassword"
+          class="form-control"
+          [(ngModel)]="userPasswords.confirm_password"
+        />
+        <div
+          *ngIf="
+            passwordForm.controls['confirmPassword'].invalid &&
+            passwordForm.controls['confirmPassword'].touched
+          "
+        >
+          <small
+            *ngIf="passwordForm.controls['confirmPassword'].errors?.['required']"
+            >Confirm Password is required.</small
+          >
+          <small
+            *ngIf="
+                  passwordForm.errors?.['mismatch'] &&
+                  passwordForm.controls['confirmPassword'].touched
+                "
+            >Passwords do not match.</small
+          >
+        </div>
+      </div>
+
+      <button
+        type="submit"
+        class="btn btn-primary"
+        [disabled]="passwordForm.invalid"
+      >
+        Change Password
+      </button>
+    </form>
+  </section>
+</main>

@@ -20,3 +20,21 @@
   align-items: center;
   flex-grow: 0;
 }
+
+.isBooking {
+  background-color: bisque;
+  padding: 0.5rem;
+}
+.isBooking button {
+  background-color: chartreuse;
+  padding: 0.2rem 2rem;
+  border-radius: 0.2rem;
+}
+.book {
+  background-color: chartreuse;
+  padding: 0.2rem 2rem;
+  border-radius: 0.2rem;
+}
+.datetime {
+  width: 100%;
+}

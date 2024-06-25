@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -13,7 +13,7 @@ export class NavbarComponent {
   token: string = localStorage.getItem('token') || '';
   isLoggedIn: boolean = false;
 
-  constructor() {
+  constructor(private router: Router) {
     if (this.token) {
       this.isLoggedIn = true;
     }
@@ -22,5 +22,6 @@ export class NavbarComponent {
   logout() {
     localStorage.removeItem('token');
     this.isLoggedIn = false;
+    this.router.navigate(['']);
   }
 }

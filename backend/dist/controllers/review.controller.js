@@ -25,7 +25,7 @@ const createReview = (req, res) => __awaiter(void 0, void 0, void 0, function* (
         !review.comment ||
         review.rating < 1 ||
         review.rating > 5) {
-        return res.status(400).json({
+        return res.status(200).json({
             success: false,
             message: "Invalid data",
             data: null,
@@ -36,9 +36,9 @@ const createReview = (req, res) => __awaiter(void 0, void 0, void 0, function* (
         return res.status(200).json(response);
     }
     else if (response.message !== "An Error Occurred") {
-        return res.status(404).json(response);
+        return res.status(200).json(response);
     }
-    return res.status(500).json(response);
+    return res.status(200).json(response);
 });
 exports.createReview = createReview;
 const getReviews = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
@@ -48,9 +48,9 @@ const getReviews = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
         return res.status(200).json(response);
     }
     else if (response.message !== "An Error Occurred") {
-        return res.status(404).json(response);
+        return res.status(200).json(response);
     }
-    return res.status(500).json(response);
+    return res.status(200).json(response);
 });
 exports.getReviews = getReviews;
 const getReviewsByUserId = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
@@ -61,9 +61,9 @@ const getReviewsByUserId = (req, res) => __awaiter(void 0, void 0, void 0, funct
         return res.status(200).json(response);
     }
     else if (response.message !== "An Error Occurred") {
-        return res.status(404).json(response);
+        return res.status(200).json(response);
     }
-    return res.status(500).json(response);
+    return res.status(200).json(response);
 });
 exports.getReviewsByUserId = getReviewsByUserId;
 const getReviewsByEventId = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
@@ -74,9 +74,9 @@ const getReviewsByEventId = (req, res) => __awaiter(void 0, void 0, void 0, func
         return res.status(200).json(response);
     }
     else if (response.message !== "An Error Occurred") {
-        return res.status(404).json(response);
+        return res.status(200).json(response);
     }
-    return res.status(500).json(response);
+    return res.status(200).json(response);
 });
 exports.getReviewsByEventId = getReviewsByEventId;
 const updateReview = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
@@ -91,7 +91,7 @@ const updateReview = (req, res) => __awaiter(void 0, void 0, void 0, function* (
         !review.comment ||
         review.rating < 1 ||
         review.rating > 5) {
-        return res.status(400).json({
+        return res.status(200).json({
             success: false,
             message: "Invalid data",
             data: null,
@@ -103,15 +103,15 @@ const updateReview = (req, res) => __awaiter(void 0, void 0, void 0, function* (
         return res.status(200).json(response);
     }
     else if (response.message !== "An Error Occurred") {
-        return res.status(404).json(response);
+        return res.status(200).json(response);
     }
-    return res.status(500).json(response);
+    return res.status(200).json(response);
 });
 exports.updateReview = updateReview;
 const deleteReview = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const id = req.params.id;
     if (!id) {
-        return res.status(400).json({
+        return res.status(200).json({
             success: false,
             message: "Invalid data",
             data: null,
@@ -123,8 +123,8 @@ const deleteReview = (req, res) => __awaiter(void 0, void 0, void 0, function* (
         return res.status(200).json(response);
     }
     else if (response.message !== "An Error Occurred") {
-        return res.status(404).json(response);
+        return res.status(200).json(response);
     }
-    return res.status(500).json(response);
+    return res.status(200).json(response);
 });
 exports.deleteReview = deleteReview;

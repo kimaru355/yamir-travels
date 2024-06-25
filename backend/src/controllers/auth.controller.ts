@@ -25,7 +25,7 @@ export const register = async (
     !user_register.phoneNumber ||
     !user_register.country
   ) {
-    return res.status(400).json({
+    return res.status(200).json({
       success: false,
       message: "Invalid data",
       data: null,
@@ -37,9 +37,9 @@ export const register = async (
   if (response.success) {
     return res.status(201).json(response);
   } else if (response.message === "An error occurred") {
-    return res.status(500).json(response);
+    return res.status(200).json(response);
   } else {
-    return res.status(400).json(response);
+    return res.status(200).json(response);
   }
 };
 
@@ -47,7 +47,7 @@ export const login = async (req: Request, res: Response): Promise<Response> => {
   const auth = new AuthService();
   const user_login: UserLogin = req.body;
   if (!user_login.email || !user_login.password) {
-    return res.status(400).json({
+    return res.status(200).json({
       success: false,
       message: "Invalid data",
       data: null,
@@ -59,9 +59,9 @@ export const login = async (req: Request, res: Response): Promise<Response> => {
   if (response.success) {
     return res.status(200).json(response);
   } else if (response.message === "An error occurred") {
-    return res.status(500).json(response);
+    return res.status(200).json(response);
   } else {
-    return res.status(401).json(response);
+    return res.status(200).json(response);
   }
 };
 
@@ -72,7 +72,7 @@ export const updateDetails = async (
   const auth = new AuthService();
   const id = getIdFromToken(req);
   if (!id) {
-    return res.status(401).json({
+    return res.status(200).json({
       success: false,
       message: "Invalid or expired token",
       data: null,
@@ -80,14 +80,14 @@ export const updateDetails = async (
   }
   const user_details: UserDetails = req.body;
   user_details.id = id;
-  const response: Res<{ role: "user" | "admin" } | null> =
-    await auth.updateDetails(user_details);
+
+  const response: Res<null> = await auth.updateDetails(user_details);
   if (response.success) {
     return res.status(200).json(response);
   } else if (response.message === "An error occurred") {
-    return res.status(500).json(response);
+    return res.status(200).json(response);
   } else {
-    return res.status(401).json(response);
+    return res.status(200).json(response);
   }
 };
 
@@ -98,7 +98,7 @@ export const updatePassword = async (
   const auth = new AuthService();
   const id = getIdFromToken(req);
   if (!id) {
-    return res.status(401).json({
+    return res.status(200).json({
       success: false,
       message: "Invalid or expired token",
       data: null,
@@ -111,8 +111,8 @@ export const updatePassword = async (
   if (response.success) {
     return res.status(202).json(response);
   } else if (response.message === "An error occurred") {
-    return res.status(500).json(response);
+    return res.status(200).json(response);
   } else {
-    return res.status(401).json(response);
+    return res.status(200).json(response);
   }
 };

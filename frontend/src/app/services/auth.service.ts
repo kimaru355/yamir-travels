@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AuthServices } from '../interfaces/auth_service';
 import {
@@ -14,6 +14,12 @@ import { Res } from '../interfaces/res';
 })
 export class AuthService implements AuthServices {
   private apiUrl: string = 'http://localhost:3000/auth';
+  token: string = localStorage.getItem('token') || '';
+
+  headers = new HttpHeaders({
+    Authorization: this.token,
+    'Content-Type': 'application/json',
+  });
   constructor(private http: HttpClient) {}
 
   register(user_register: UserRegister) {
@@ -30,15 +36,21 @@ export class AuthService implements AuthServices {
 
   updateDetails(user_details: UserDetails) {
     return this.http.put<Res<null>>(
-      `${this.apiUrl}/update-details`,
-      user_details
+      `${this.apiUrl}/update_details`,
+      user_details,
+      {
+        headers: this.headers,
+      }
     );
   }
 
   updatePassword(user_passwords: UserPasswords) {
     return this.http.put<Res<null>>(
-      `${this.apiUrl}/update-password`,
-      user_passwords
+      `${this.apiUrl}/update_password`,
+      user_passwords,
+      {
+        headers: this.headers,
+      }
     );
   }
 }

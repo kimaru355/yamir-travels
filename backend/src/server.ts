@@ -9,6 +9,7 @@ import FavoriteRouter from "./routers/favorite.router";
 import { verifyToken } from "./middlewares/verifyToken";
 import UsersRouter from "./routers/users.router";
 import { verifyAdmin } from "./middlewares/verifyAdmin";
+import UserRouter from "./routers/user.router";
 
 dotenv.config();
 const app = express();
@@ -22,7 +23,7 @@ app.use(
 app.use(json());
 app.use((error: Error, req: Request, res: Response, next: NextFunction) => {
   if (error) {
-    return res.status(400).json({
+    return res.status(200).json({
       success: false,
       message: error.message,
       data: null,
@@ -37,6 +38,7 @@ app.use("/reviews", verifyToken, ReviewRouter);
 app.use("/events", EventRouter);
 app.use("/favorites", verifyToken, FavoriteRouter);
 app.use("/users", verifyToken, verifyAdmin, UsersRouter);
+app.use("/user", verifyToken, UserRouter);
 
 const port = 3000;
 

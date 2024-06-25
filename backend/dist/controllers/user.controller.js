@@ -9,23 +9,15 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getUser = exports.getAllUsers = void 0;
+exports.getUserDetails = void 0;
+const get_id_from_token_1 = require("../helpers/get_id_from_token");
 const users_service_1 = require("../services/users.service");
-const getAllUsers = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+const getUserDetails = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const usersService = new users_service_1.UsersService();
-    const response = yield usersService.getUsers();
-    if (response.success) {
-        return res.status(200).json(response);
+    const id = (0, get_id_from_token_1.getIdFromToken)(req);
+    if (!id) {
+        return res.status(200).json({ success: false, message: "Unauthorized" });
     }
-    else if (response.message !== "An Error Occurred") {
-        return res.status(200).json(response);
-    }
-    return res.status(200).json(response);
-});
-exports.getAllUsers = getAllUsers;
-const getUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const usersService = new users_service_1.UsersService();
-    const id = req.params.id;
     const response = yield usersService.getUser(id);
     if (response.success) {
         return res.status(200).json(response);
@@ -35,4 +27,4 @@ const getUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     }
     return res.status(200).json(response);
 });
-exports.getUser = getUser;
+exports.getUserDetails = getUserDetails;

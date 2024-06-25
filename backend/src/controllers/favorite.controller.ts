@@ -12,7 +12,7 @@ export const createFavorite = async (
   const favorite: Favorite = req.body;
   favorite.id = v4();
   if (!favorite.id || !favorite.eventId || !favorite.userId) {
-    return res.status(400).json({
+    return res.status(200).json({
       success: false,
       message: "Invalid data",
       data: null,
@@ -22,9 +22,9 @@ export const createFavorite = async (
   if (response.success) {
     return res.status(200).json(response);
   } else if (response.message !== "An Error Occurred") {
-    return res.status(404).json(response);
+    return res.status(200).json(response);
   }
-  return res.status(500).json(response);
+  return res.status(200).json(response);
 };
 
 export const getFavorites = async (
@@ -39,9 +39,9 @@ export const getFavorites = async (
   if (response.success) {
     return res.status(200).json(response);
   } else if (response.message !== "An Error Occurred") {
-    return res.status(404).json(response);
+    return res.status(200).json(response);
   }
-  return res.status(500).json(response);
+  return res.status(200).json(response);
 };
 
 export const deleteFavorite = async (
@@ -56,7 +56,7 @@ export const deleteFavorite = async (
   if (response.success) {
     return res.status(200).json(response);
   } else if (response.message !== "An Error Occurred") {
-    return res.status(404).json(response);
+    return res.status(200).json(response);
   }
-  return res.status(500).json(response);
+  return res.status(200).json(response);
 };

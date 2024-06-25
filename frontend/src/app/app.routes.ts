@@ -11,10 +11,15 @@ import { ToursComponent } from './pages/tours/tours.component';
 import { ManageEventsComponent } from './pages/manage-events/manage-events.component';
 import { CreateEventComponent } from './components/create-event/create-event.component';
 import { authGuard } from './guards/auth.guard';
+import { authRoutesGuard } from './guards/auth-routes.guard';
 
 export const routes: Routes = [
-  { path: 'login', component: LoginComponent },
-  { path: 'register', component: RegisterComponent },
+  { path: 'login', component: LoginComponent, canActivate: [authRoutesGuard] },
+  {
+    path: 'register',
+    component: RegisterComponent,
+    canActivate: [authRoutesGuard],
+  },
   {
     path: '',
     component: HomeComponent,
@@ -56,6 +61,10 @@ export const routes: Routes = [
         path: 'create-event',
         component: CreateEventComponent,
         canActivate: [authGuard],
+      },
+      {
+        path: 'profile',
+        component: ProfileComponent,
       },
     ],
   },

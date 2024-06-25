@@ -1,9 +1,9 @@
 export interface Booking {
-  id: string;
+  id?: string;
   eventId: string;
-  userId: string;
+  userId?: string;
   bookingDate: string;
-  isEventCompleted: boolean;
+  isEventCompleted?: boolean;
   createdAt?: Date;
   updateAt?: Date;
 }

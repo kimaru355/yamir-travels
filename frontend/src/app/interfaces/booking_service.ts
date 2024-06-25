@@ -1,11 +1,10 @@
-import { Booking } from "./booking";
-import { Res } from "./res";
+import { Booking } from './booking';
 
 export interface BookingServices {
-  createBooking(booking: Booking): Promise<Res<null>>;
-  getAllBookings(): Promise<Res<Booking[] | null>>;
-  getCompletedBookings(): Promise<Res<Booking[] | null>>;
-  getIncompleteBookings(): Promise<Res<Booking[] | null>>;
-  getBookingsByEventId(eventId: string): Promise<Res<Booking[] | null>>;
-  getBookingsByUserId(userId: string): Promise<Res<Booking[] | null>>;
+  createBooking(booking: Booking): any;
+  getAllBookings(): any;
+  getCompletedBookings(): any;
+  getIncompleteBookings(): any;
+  getBookingsByEventId(eventId: string): any;
+  getBookingsByUserId(userId: string): any;
 }
