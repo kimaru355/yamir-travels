@@ -12,6 +12,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.deleteFavorite = exports.getFavorites = exports.createFavorite = void 0;
 const favorite_service_1 = require("../services/favorite.service");
 const uuid_1 = require("uuid");
+const get_id_from_token_1 = require("../helpers/get_id_from_token");
 const createFavorite = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const favoriteService = new favorite_service_1.FavoriteService();
     const favorite = req.body;
@@ -35,7 +36,15 @@ const createFavorite = (req, res) => __awaiter(void 0, void 0, void 0, function*
 exports.createFavorite = createFavorite;
 const getFavorites = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const favoriteService = new favorite_service_1.FavoriteService();
-    const userId = req.params.userId;
+    const id = (0, get_id_from_token_1.getIdFromToken)(req);
+    if (!id) {
+        return res.status(200).json({
+            success: false,
+            message: "Invalid data",
+            data: null,
+        });
+    }
+    const userId = id;
     const response = yield favoriteService.getFavorites(userId);
     if (response.success) {
         return res.status(200).json(response);

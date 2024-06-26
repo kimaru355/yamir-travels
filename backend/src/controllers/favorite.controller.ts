@@ -3,6 +3,7 @@ import { FavoriteService } from "../services/favorite.service";
 import { Favorite } from "../interfaces/favorite";
 import { Res } from "../interfaces/res";
 import { v4 } from "uuid";
+import { getIdFromToken } from "../helpers/get_id_from_token";
 
 export const createFavorite = async (
   req: Request,
@@ -32,7 +33,15 @@ export const getFavorites = async (
   res: Response
 ): Promise<Response> => {
   const favoriteService = new FavoriteService();
-  const userId: string = req.params.userId;
+  const id = getIdFromToken(req);
+  if (!id) {
+    return res.status(200).json({
+      success: false,
+      message: "Invalid data",
+      data: null,
+    });
+  }
+  const userId: string = id;
   const response: Res<Favorite[] | null> = await favoriteService.getFavorites(
     userId
   );

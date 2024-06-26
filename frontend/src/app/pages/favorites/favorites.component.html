@@ -1,1 +1,10 @@
-<p>favorites works!</p>
+<section>
+  <div *ngIf="!favorites">
+    <p>You have not added any trips to favorites</p>
+  </div>
+  <div *ngIf="favorites">
+    <div *ngFor="let favorite of favorites">
+      <p></p>
+    </div>
+  </div>
+</section>

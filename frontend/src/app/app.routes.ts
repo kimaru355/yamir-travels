@@ -9,9 +9,10 @@ import { FavoritesComponent } from './pages/favorites/favorites.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { ToursComponent } from './pages/tours/tours.component';
 import { ManageEventsComponent } from './pages/manage-events/manage-events.component';
-import { CreateEventComponent } from './components/create-event/create-event.component';
+import { CreateEventComponent } from './pages/create-event/create-event.component';
 import { authGuard } from './guards/auth.guard';
 import { authRoutesGuard } from './guards/auth-routes.guard';
+import { ManageUsersComponent } from './pages/manage-users/manage-users.component';
 
 export const routes: Routes = [
   { path: 'login', component: LoginComponent, canActivate: [authRoutesGuard] },
@@ -65,7 +66,15 @@ export const routes: Routes = [
       {
         path: 'profile',
         component: ProfileComponent,
+        canActivate: [authGuard],
+      },
+      {
+        path: 'users',
+        component: ManageUsersComponent,
+        canActivate: [authGuard],
       },
     ],
   },
+
+  { path: '**', redirectTo: '' },
 ];
